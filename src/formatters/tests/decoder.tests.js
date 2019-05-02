@@ -10,7 +10,7 @@ describe('Decoder', () => {
   describe('toVIPSTARCOINAddress()', () => {
     it('returns the converted VIPSTARCOIN address', () => {
       assert.equal(
-        Decoder.toQtumAddress('e8ad19efc526cb83065c67616b8ba6766e713f40', false),
+        Decoder.toVIPSTARCOINAddress('e8ad19efc526cb83065c67616b8ba6766e713f40', false),
         'vUpu78SxadYJhxk1xjHCkDiPTzfrgGS2qq',
       );
       assert.equal(
