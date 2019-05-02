@@ -2,10 +2,10 @@ require('dotenv').config();
 
 module.exports = {
   /**
-   * Returns the default Qtum address.
-   * @return {String} Default Qtum address.
+   * Returns the default VIPSTARCOIN address.
+   * @return {String} Default VIPSTARCOIN address.
    */
-  getDefaultQtumAddress: () => {
+  getDefaultVIPSTARCOINAddress: () => {
     if (!process.env.SENDER_ADDRESS) {
       throw Error('Must have SENDER_ADDRESS in .env');
     }
@@ -13,14 +13,14 @@ module.exports = {
   },
 
   /**
-   * Returns the Qtum network RPC url.
-   * @return {String} The Qtum network RPC url.
+   * Returns the VIPSTARCOIN network RPC url.
+   * @return {String} The VIPSTARCOIN network RPC url.
    */
-  getQtumRPCAddress: () => {
-    if (!process.env.QTUM_RPC_ADDRESS) {
-      throw Error('Must have QTUM_RPC_ADDRESS in .env');
+  getVIPSTARCOINRPCAddress: () => {
+    if (!process.env.VIPS_RPC_ADDRESS) {
+      throw Error('Must have VIPS_RPC_ADDRESS in .env');
     }
-    return String(Buffer.from(process.env.QTUM_RPC_ADDRESS));
+    return String(Buffer.from(process.env.VIPS_RPC_ADDRESS));
   },
 
   /**
@@ -29,8 +29,8 @@ module.exports = {
    */
   getWalletPassphrase: () => (process.env.WALLET_PASSPHRASE ? String(Buffer.from(process.env.WALLET_PASSPHRASE)) : ''),
 
-  isWalletEncrypted: async (qweb3) => {
-    const res = await qweb3.getWalletInfo();
+  isWalletEncrypted: async (vweb3) => {
+    const res = await vweb3.getWalletInfo();
     return Object.prototype.hasOwnProperty.call(res, 'unlocked_until');
   },
 };

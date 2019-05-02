@@ -149,33 +149,33 @@ describe('Encoder', () => {
   });
 
   describe('addressToHex()', () => {
-    it('should convert a qtum address', () => {
+    it('should convert a VIPSTARCOIN address', () => {
       assert.equal(
-        Encoder.addressToHex('qKjn4fStBaAtwGiwueJf9qFxgpbAvf1xAy'),
-        '00000000000000000000000017e7888aa7412a735f336d2f6d784caefabb6fa3',
+        Encoder.addressToHex('vUpu78SxadYJhxk1xjHCkDiPTzfrgGS2qq'),
+        '000000000000000000000000e8ad19efc526cb83065c67616b8ba6766e713f40',
       );
       assert.equal(
-        Encoder.addressToHex('qKoxAUEQ1Nj6anwes6ZjRGQ7aqdiyUeat8'),
-        '00000000000000000000000018b1a0dc71e4de23c20dc4163f9696d2d9d63868',
+        Encoder.addressToHex('vHEfSE8teXeGginPWjNho1z6YQmwp28AeC'),
+        '000000000000000000000000698a29ca9ae1efffc791c0b3bfe8e9b3e64a5ea5',
       );
       assert.equal(
-        Encoder.addressToHex('qTumW1fRyySwmoPi12LpFyeRj8W6mzUQA3'),
-        '000000000000000000000000718c3ab4d6a28c92c570a1c12bfc17c3512bb05b',
+        Encoder.addressToHex('vRQ8m2xmzGmASDCJxp1UWjmEbCrnUHRR4R'),
+        '000000000000000000000000c315b8ea0ddceb39d34231a9c2f83632197a66ed',
       );
     });
 
     it('should pad a hex address', () => {
       assert.equal(
-        Encoder.addressToHex('17e7888aa7412a735f336d2f6d784caefabb6fa3'),
-        '00000000000000000000000017e7888aa7412a735f336d2f6d784caefabb6fa3',
+        Encoder.addressToHex('e8ad19efc526cb83065c67616b8ba6766e713f40'),
+        '000000000000000000000000e8ad19efc526cb83065c67616b8ba6766e713f40',
       );
       assert.equal(
-        Encoder.addressToHex('18b1a0dc71e4de23c20dc4163f9696d2d9d63868'),
-        '00000000000000000000000018b1a0dc71e4de23c20dc4163f9696d2d9d63868',
+        Encoder.addressToHex('698a29ca9ae1efffc791c0b3bfe8e9b3e64a5ea5'),
+        '000000000000000000000000698a29ca9ae1efffc791c0b3bfe8e9b3e64a5ea5',
       );
       assert.equal(
-        Encoder.addressToHex('718c3ab4d6a28c92c570a1c12bfc17c3512bb05b'),
-        '000000000000000000000000718c3ab4d6a28c92c570a1c12bfc17c3512bb05b',
+        Encoder.addressToHex('c315b8ea0ddceb39d34231a9c2f83632197a66ed'),
+        '000000000000000000000000c315b8ea0ddceb39d34231a9c2f83632197a66ed',
       );
     });
 

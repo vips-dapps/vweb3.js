@@ -10,13 +10,13 @@ const { assert } = chai;
 describe('Providers', () => {
   describe('initProvider', () => {
     it('accepts a url string', () => {
-      const instance = initProvider('http://bodhi:bodhi@localhost:13889');
+      const instance = initProvider('http://user:pass@localhost:32916');
       assert.isDefined(instance);
       assert.isTrue(instance.constructor.name === 'HttpProvider');
     });
 
     it('accepts an HttpProvider', () => {
-      const instance = initProvider(new HttpProvider('http://bodhi:bodhi@localhost:13889'));
+      const instance = initProvider(new HttpProvider('http://user:pass@localhost:32916'));
       assert.isDefined(instance);
       assert.isTrue(instance.constructor.name === 'HttpProvider');
     });

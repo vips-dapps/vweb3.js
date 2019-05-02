@@ -1,35 +1,36 @@
 language: node_js
+dist: xenial
 
 node_js:
   - "10"
 
 env:
-  - CXX=g++-4.8 QTUM_RPC_ADDRESS='http://bodhi:bodhi@localhost:13889' SENDER_ADDRESS='qMZK8FNPRm54jvTLAGEs1biTCgyCkcsmna' WALLET_PASSPHRASE='bodhi'
+  - CC=gcc-5 CXX=g++-5 VIPS_RPC_ADDRESS='http://user:pass@localhost:32916' SENDER_ADDRESS='vKbdhdXU8imLugnW3tpKTSovg4CCCUzMqM' WALLET_PASSPHRASE='pass'
 
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
-    - gcc-4.8
-    - g++-4.8
+    - gcc-5
+    - g++-5
 
 cache:
   directories:
     - "node_modules"
 
 before_install:
-  - wget https://github.com/qtumproject/qtum/releases/download/mainnet-ignition-v0.16.1/qtum-0.16.1-x86_64-linux-gnu.tar.gz
+  - wget https://github.com/y-chan/VIPSTARCOIN/releases/download/v1.0.2/VIPSTARCOIN-1.0.2-x86_64-linux-gnu.tar.gz
 
 install:
-  - tar -xvzf qtum-0.16.1-x86_64-linux-gnu.tar.gz
+  - tar -xvzf VIPSTARCOIN-1.0.2-x86_64-linux-gnu.tar.gz
   - npm install
-  - mkdir test/data/.qtum
+  - mkdir test/data/.VIPSTARCOIN
 
 script:
-  - ./qtum-0.16.1/bin/qtumd -testnet -logevents -rpcuser=bodhi -rpcpassword=bodhi -datadir=./test/data/.qtum & 
+  - ./bin/VIPSTARCOINd -testnet -logevents -rpcuser=user -rpcpassword=pass -datadir=./test/data/.VIPSTARCOIN & 
   - sleep 10
   - npm run test:cleanenv
 
 after_failure:
-  - cat /home/travis/build/bodhiproject/qweb3.js/test/data/.qtum/testnet3/debug.log
+  - cat /home/travis/build/vipstar-dev/vweb3.js/test/data/.VIPSTARCOIN/testnet3/debug.log

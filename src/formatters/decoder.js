@@ -7,11 +7,11 @@ const bs58 = require('bs58');
 const Encoder = require('./encoder');
 const Utils = require('../utils');
 
-const MainnetNetworkByte = '3A';
-const TestnetNetworkByte = '78';
+const MainnetNetworkByte = '46';
+const TestnetNetworkByte = '84';
 
 class Decoder {
-  static toQtumAddress(hexAddress, isMainnet = false) {
+  static toVIPSTARCOINAddress(hexAddress, isMainnet = false) {
     if (hexAddress === undefined || isEmpty(hexAddress)) {
       throw new Error('hexAddress should not be undefined or empty');
     }
@@ -19,25 +19,25 @@ class Decoder {
       throw new Error('Invalid hex address');
     }
     // reference: https://gobittest.appspot.com/Address
-    let qAddress = hexAddress;
+    let vAddress = hexAddress;
     // Add network byte
     if (isMainnet) {
-      qAddress = MainnetNetworkByte + qAddress;
+      vAddress = MainnetNetworkByte + vAddress;
     } else {
-      qAddress = TestnetNetworkByte + qAddress;
+      vAddress = TestnetNetworkByte + vAddress;
     }
 
-    const qAddressBuffer = Buffer.from(qAddress, 'hex');
+    const vAddressBuffer = Buffer.from(vAddress, 'hex');
     // Double SHA256 hash
-    const hash1 = crypto.createHash('sha256').update(qAddressBuffer).digest('Hex');
+    const hash1 = crypto.createHash('sha256').update(vAddressBuffer).digest('Hex');
     const hash1Buffer = Buffer.from(hash1, 'hex');
     const hash2 = crypto.createHash('sha256').update(hash1Buffer).digest('Hex');
 
     // get first 4 bytes
-    qAddress += hash2.slice(0, 8);
+    vAddress += hash2.slice(0, 8);
 
     // base58 encode
-    const address = bs58.encode(Buffer.from(qAddress, 'hex'));
+    const address = bs58.encode(Buffer.from(vAddress, 'hex'));
     return address;
   }
 

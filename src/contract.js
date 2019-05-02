@@ -10,7 +10,7 @@ const DEFAULT_GAS_PRICE = 0.0000004;
 class Contract {
   /**
    * Contract constructor.
-   * @param {string|Qweb3Provider} provider Either URL string to create HttpProvider or a Qweb3 compatible provider.
+   * @param {string|Vweb3Provider} provider Either URL string to create HttpProvider or a Vweb3 compatible provider.
    * @param {string} address Address of the contract.
    * @param {array} abi ABI of the contract.
    */

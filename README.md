@@ -1,23 +1,23 @@
-[![Build Status](https://travis-ci.org/bodhiproject/qweb3.js.svg?branch=master)](https://travis-ci.org/bodhiproject/qweb3.js)
+[![Build Status](https://travis-ci.org/vipstar-dev/vweb3.js.svg?branch=master)](https://travis-ci.org/vipstar-dev/vweb3.js)
 
-# Qweb3.js - Web3.js for Qtum
+# Vweb3.js - Web3.js for VIPSTARCOIN
 
-Qweb3 is a library for dApps to interract with the Qtum blockchain. Qweb3 communicates to a Qtum node via the provider provided.
+Vweb3 is a library for dApps to interract with the VIPSTARCOIN blockchain. Vweb3 communicates to a VIPSTARCOIN node via the provider provided.
 
-https://www.npmjs.com/package/qweb3
+https://www.npmjs.com/package/vweb3
 
 ## Get Started
 Run the following in your project folder:
 
-	npm install qweb3 --save
+	npm install https://github.com/vipstar-dev/vweb3 --save
 
 ## Web Dapp Usage
-This is example is meant for web dapps who would like to use Qweb3's convenience methods with Qrypto's RPC provider. Qrypto is a Qtum wallet [Chrome extension](https://chrome.google.com/webstore/detail/qrypto/hdmjdgjbehedbnjmljikggbmmbnbmlnd). More details about Qrypto [here](https://github.com/bodhiproject/qrypto).
+This is example is meant for web dapps who would like to use Vweb3's convenience methods with Qrypto for VIPS's RPC provider. Qrypto for VIPS is a VIPSTARCOIN wallet. More details about Qrypto for VIPS [here](https://github.com/vipstar-dev/qrypto-vips).
 
-### 1. Construct Qweb3 instance
-If you have Qrypyto installed, you will have a `window.qrypto` object injected in your browser tab. Pass that into Qweb3 as a parameter to set the provider.
+### 1. Construct Vweb3 instance
+If you have Qrypyto for VIPS installed, you will have a `window.qrypto` object injected in your browser tab. Pass that into Vweb3 as a parameter to set the provider.
 ```
-const qweb3 = new Qweb3(window.qrypto.rpcProvider);
+const vweb3 = new Vweb3(window.qrypto.rpcProvider);
 ```
 
 ### 2. Construct Contract instance
@@ -27,11 +27,11 @@ const contractAddress = 'f7b958eac2bdaca0f225b86d162f263441d23c19';
 const contractAbi = [{"constant":false,"inputs":[{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_lastResultIndex","type":"uint8"},{"name":"_arbitrationEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"createDecentralizedOracle","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_lastResultIndex","type":"uint8"},{"name":"_arbitrationEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"doesDecentralizedOracleExist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_oracle","type":"address"},{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_bettingEndBlock","type":"uint256"},{"name":"_resultSettingEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"createCentralizedOracle","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_oracle","type":"address"},{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_bettingEndBlock","type":"uint256"},{"name":"_resultSettingEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"doesCentralizedOracleExist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"oracles","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_addressManager","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_contractAddress","type":"address"},{"indexed":true,"name":"_oracle","type":"address"},{"indexed":true,"name":"_eventAddress","type":"address"},{"indexed":false,"name":"_name","type":"bytes32[10]"},{"indexed":false,"name":"_resultNames","type":"bytes32[10]"},{"indexed":false,"name":"_numOfResults","type":"uint8"},{"indexed":false,"name":"_bettingEndBlock","type":"uint256"},{"indexed":false,"name":"_resultSettingEndBlock","type":"uint256"},{"indexed":false,"name":"_consensusThreshold","type":"uint256"}],"name":"CentralizedOracleCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_contractAddress","type":"address"},{"indexed":true,"name":"_eventAddress","type":"address"},{"indexed":false,"name":"_name","type":"bytes32[10]"},{"indexed":false,"name":"_resultNames","type":"bytes32[10]"},{"indexed":false,"name":"_numOfResults","type":"uint8"},{"indexed":false,"name":"_lastResultIndex","type":"uint8"},{"indexed":false,"name":"_arbitrationEndBlock","type":"uint256"},{"indexed":false,"name":"_consensusThreshold","type":"uint256"}],"name":"DecentralizedOracleCreated","type":"event"}];
 
 // Create a new Contract instance and use the same provider as qweb3
-const contract = qweb3.Contract(contractAddress, contractAbi);
+const contract = vweb3.Contract(contractAddress, contractAbi);
 ```
 
-### 3. Get Logged In Qrypto Account
-To get the current logged in account in Qrypto, you will have to add an [Event Listener](https://www.w3schools.com/jsref/met_element_addeventlistener.asp) to listen to messages sent from Qrypto.
+### 3. Get Logged In Qrypto for VIPS Account
+To get the current logged in account in Qrypto for VIPS, you will have to add an [Event Listener](https://www.w3schools.com/jsref/met_element_addeventlistener.asp) to listen to messages sent from Qrypto for VIPS.
 ```
 let account;
 
@@ -44,7 +44,7 @@ function onQryptoAcctChange(event) {
     //   loggedIn: true,
     //   name: "My Wallet", 
     //   network: "TestNet",
-    //   address: "qJHp6dUSmDShpEEMmwxqHPo7sFSdydSkPM",
+    //   address: "vJHp6dUSmDShpEEMmwxqHPo7sFSdydSkPM",
     //   balance: 49.10998413
     // } 
 
@@ -56,7 +56,7 @@ window.addEventListener('message', onQryptoAcctChange, false);
 ```
 
 ### 4. Execute sendtocontract
-The last piece is to execute a `sendtocontract` on your Contract instance. This will automatically show a Qrypto popup to confirm that you would like to send the transaction.
+The last piece is to execute a `sendtocontract` on your Contract instance. This will automatically show a Qrypto for VIPS popup to confirm that you would like to send the transaction.
 ```
 // Does a sendtocontract call on a function called setResult(uint8)
 const tx = await contract.send('setResult', {
@@ -67,36 +67,36 @@ const tx = await contract.send('setResult', {
 // tx = txid of the transaction
 ```
 
-## Qweb3Provider
-The provider is the link between Qweb3 and the blockchain. A compatible Qweb3 Provider adheres to the following interface:
+## Vweb3Provider
+The provider is the link between Vweb3 and the blockchain. A compatible Vweb3 Provider adheres to the following interface:
 ```
-interface Qweb3Provider: {
+interface Vweb3Provider: {
   rawCall: (method: string, args: any[]) => Promise; // returns the result of the request
 }
 ```
 
-## Qweb3
-Instantiate a new instance of `Qweb3`: 
+## Vweb3
+Instantiate a new instance of `Vweb3`: 
 ```
-const { Qweb3 } = require('qweb3');
+const { Vweb3 } = require('vweb3');
 
-// Instantiate Qweb3 with HttpProvider
-// Pass in the URL of your Qtum node RPC port with auth credentials.
-// Default Qtum RPC ports: testnet=13889 mainnet=3889
-const qweb3 = new Qweb3('http://bodhi:bodhi@localhost:13889');
+// Instantiate Vweb3 with HttpProvider
+// Pass in the URL of your VIPSTARCOIN node RPC port with auth credentials.
+// Default Qtum RPC ports: testnet=32916 mainnet=31916
+const vweb3 = new Vweb3('http://user:pass@localhost:32916');
 
-// Instantiate Qweb3 with QryptoRPCProvider
+// Instantiate Vweb3 with QryptoRPCProvider
 // QryptoRPCProvider is a provider for the Qrypto Wallet Chrome Extension.
 // Please note QryptoRPCProvider only allows the rawCall() method to be used.
 // It is specifically used for `sendtocontract` and `callcontract` only.
-const qweb3 = new Qweb3(window.qrypto.rpcProvider);
+const vweb3 = new Vweb3(window.qrypto.rpcProvider);
 ```
 
 ### isConnected()
 Checks if you are connected properly to the local qtum node.
 ```
 async function isConnected() {
-  return await qweb3.isConnected();
+  return await vweb3.isConnected();
 }
 ```
 
@@ -104,7 +104,7 @@ async function isConnected() {
 Converts a Qtum address to hex format.
 ```
 async function getHexAddress() {
-  return await qweb3.getHexAddress('qKjn4fStBaAtwGiwueJf9qFxgpbAvf1xAy');
+  return await vweb3.getHexAddress('vKjn4fStBaAtwGiwueJf9qFxgpbAvf1xAy');
 }
 ```
 
@@ -112,7 +112,7 @@ async function getHexAddress() {
 Converts a hex address to Qtum format.
 ```
 async function fromHexAddress() {
-  return await qweb3.fromHexAddress('17e7888aa7412a735f336d2f6d784caefabb6fa3');
+  return await vweb3.fromHexAddress('17e7888aa7412a735f336d2f6d784caefabb6fa3');
 }
 ```
 
@@ -120,7 +120,7 @@ async function fromHexAddress() {
 Gets the current block height of your local Qtum node.
 ```
 async function getBlockCount() {
-  return await qweb3.getBlockCount();
+  return await vweb3.getBlockCount();
 }
 ```
 
@@ -132,7 +132,7 @@ async function getTransaction(args) {
     transactionId, // string
   } = args;
 
-  return await qweb3.getTransactionReceipt(transactionId);
+  return await vweb3.getTransactionReceipt(transactionId);
 }
 ```
 
@@ -144,7 +144,7 @@ async function getTransactionReceipt(args) {
     transactionId, // string
   } = args;
 
-  return await qweb3.getTransactionReceipt(transactionId);
+  return await vweb3.getTransactionReceipt(transactionId);
 }
 ```
 
@@ -152,7 +152,7 @@ async function getTransactionReceipt(args) {
 Gets the unspent outputs that can be used.
 ```
 async function listUnspent() {
-  return await qweb3.listUnspent();
+  return await vweb3.listUnspent();
 }
 ```
 
@@ -194,16 +194,16 @@ async function(args) {
   }
 
   // removeHexPrefix = true removes the '0x' hex prefix from all hex values
-  return await qweb3.searchLogs(fromBlock, toBlock, addresses, topics, contractMetadata, true);
+  return await vweb3.searchLogs(fromBlock, toBlock, addresses, topics, contractMetadata, true);
 }
 ```
 
 ## Contract.js
 Instantiate a new instance of `Contract`: 
 ```
-const { Qweb3 } = require('qweb3');
+const { Vweb3 } = require('vweb3');
 
-const qweb3 = new Qweb3('http://bodhi:bodhi@localhost:13889');
+const vweb3 = new Vweb3('http://user:pass@localhost:32916');
 
 // contractAddress = The address of your contract deployed on the blockchain
 const contractAddress = 'f7b958eac2bdaca0f225b86d162f263441d23c19';
@@ -211,8 +211,8 @@ const contractAddress = 'f7b958eac2bdaca0f225b86d162f263441d23c19';
 // contractAbi = The ABI of the contract
 const contractAbi = [{"constant":false,"inputs":[{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_lastResultIndex","type":"uint8"},{"name":"_arbitrationEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"createDecentralizedOracle","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_lastResultIndex","type":"uint8"},{"name":"_arbitrationEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"doesDecentralizedOracleExist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_oracle","type":"address"},{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_bettingEndBlock","type":"uint256"},{"name":"_resultSettingEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"createCentralizedOracle","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_oracle","type":"address"},{"name":"_eventAddress","type":"address"},{"name":"_eventName","type":"bytes32[10]"},{"name":"_eventResultNames","type":"bytes32[10]"},{"name":"_numOfResults","type":"uint8"},{"name":"_bettingEndBlock","type":"uint256"},{"name":"_resultSettingEndBlock","type":"uint256"},{"name":"_consensusThreshold","type":"uint256"}],"name":"doesCentralizedOracleExist","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"bytes32"}],"name":"oracles","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_addressManager","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_contractAddress","type":"address"},{"indexed":true,"name":"_oracle","type":"address"},{"indexed":true,"name":"_eventAddress","type":"address"},{"indexed":false,"name":"_name","type":"bytes32[10]"},{"indexed":false,"name":"_resultNames","type":"bytes32[10]"},{"indexed":false,"name":"_numOfResults","type":"uint8"},{"indexed":false,"name":"_bettingEndBlock","type":"uint256"},{"indexed":false,"name":"_resultSettingEndBlock","type":"uint256"},{"indexed":false,"name":"_consensusThreshold","type":"uint256"}],"name":"CentralizedOracleCreated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"_contractAddress","type":"address"},{"indexed":true,"name":"_eventAddress","type":"address"},{"indexed":false,"name":"_name","type":"bytes32[10]"},{"indexed":false,"name":"_resultNames","type":"bytes32[10]"},{"indexed":false,"name":"_numOfResults","type":"uint8"},{"indexed":false,"name":"_lastResultIndex","type":"uint8"},{"indexed":false,"name":"_arbitrationEndBlock","type":"uint256"},{"indexed":false,"name":"_consensusThreshold","type":"uint256"}],"name":"DecentralizedOracleCreated","type":"event"}];
 
-// Create a Contract instance from the Qweb3 instance
-const contract = qweb3.Contract(contractAddress, contractAbi);
+// Create a Contract instance from the Vweb3 instance
+const contract = vweb3.Contract(contractAddress, contractAbi);
 ```
 
 ### call(methodName, params)
@@ -250,54 +250,54 @@ async function exampleSend(args) {
 ```
 
 ## Encoder
-`Encoder` static functions are exposed in Qweb3 instances.
+`Encoder` static functions are exposed in Vweb3 instances.
 ```
-const { Qweb3 } = require('qweb3');
+const { Vweb3 } = require('vweb3');
 
-const qweb3 = new Qweb3('http://bodhi:bodhi@localhost:13889');
-qweb3.encoder.objToHash(abiObj, isFunction);
-qweb3.encoder.addressToHex(address);
-qweb3.encoder.boolToHex(value);
-qweb3.encoder.intToHex(num);
-qweb3.encoder.uintToHex(num);
-qweb3.encoder.stringToHex(string, maxCharLen);
-qweb3.encoder.stringArrayToHex(strArray, numOfItems);
-qweb3.encoder.padHexString(hexStr);
-qweb3.encoder.constructData(abi, methodName, args);
+const vweb3 = new Vweb3('http://user:pass@localhost:32916');
+vweb3.encoder.objToHash(abiObj, isFunction);
+vweb3.encoder.addressToHex(address);
+vweb3.encoder.boolToHex(value);
+vweb3.encoder.intToHex(num);
+vweb3.encoder.uintToHex(num);
+vweb3.encoder.stringToHex(string, maxCharLen);
+vweb3.encoder.stringArrayToHex(strArray, numOfItems);
+vweb3.encoder.padHexString(hexStr);
+vweb3.encoder.constructData(abi, methodName, args);
 ```
 
 ## Decoder
-`Decoder` static functions are exposed in Qweb3 instances.
+`Decoder` static functions are exposed in Vweb3 instances.
 ```
-const { Qweb3 } = require('qweb3');
+const { Vweb3 } = require('vweb3');
 
-const qweb3 = new Qweb3('http://bodhi:bodhi@localhost:13889');
-qweb3.decoder.toQtumAddress(hexAddress, isMainnet);
-qweb3.decoder.removeHexPrefix(value);
-qweb3.decoder.decodeSearchLog(rawOutput, contractMetadata, removeHexPrefix);
-qweb3.decoder.decodeCall(rawOutput, contractABI, methodName, removeHexPrefix);
+const vweb3 = new Vweb3('http://user:pass@localhost:32916');
+vweb3.decoder.toQtumAddress(hexAddress, isMainnet);
+vweb3.decoder.removeHexPrefix(value);
+vweb3.decoder.decodeSearchLog(rawOutput, contractMetadata, removeHexPrefix);
+vweb3.decoder.decodeCall(rawOutput, contractABI, methodName, removeHexPrefix);
 ```
 
 ## Utils
-`Utils` static functions are exposed in Qweb3 instances.
+`Utils` static functions are exposed in Vweb3 instances.
 ```
-const { Qweb3 } = require('qweb3');
+const { Vweb3 } = require('vweb3');
 
-const qweb3 = new Qweb3('http://bodhi:bodhi@localhost:13889');
-qweb3.utils.paramsCheck(methodName, params, required, validators);
-qweb3.utils.appendHexPrefix(value);
-qweb3.utils.trimHexPrefix(str);
-qweb3.utils.chunkString(str, length);
-qweb3.utils.toUtf8(hex);
-qweb3.utils.fromUtf8(str);
-qweb3.utils.isJson(str);
-qweb3.utils.isQtumAddress(address);
+const vweb3 = new Vweb3('http://user:pass@localhost:32916');
+vweb3.utils.paramsCheck(methodName, params, required, validators);
+vweb3.utils.appendHexPrefix(value);
+vweb3.utils.trimHexPrefix(str);
+vweb3.utils.chunkString(str, length);
+vweb3.utils.toUtf8(hex);
+vweb3.utils.fromUtf8(str);
+vweb3.utils.isJson(str);
+vweb3.utils.isQtumAddress(address);
 ```
 
 ## Running Tests
 You need to create a `.env` file in the root folder with the following variables in the following formats. Change it to how your environment is setup.
 ```
-QTUM_RPC_ADDRESS='http://bodhi:bodhi@localhost:13889'
-SENDER_ADDRESS='qMZK8FNPRm54jvTLAGEs1biTCgyCkcsmna'
-WALLET_PASSPHRASE='bodhi'
+QTUM_RPC_ADDRESS='http://user:pass@localhost:32916'
+SENDER_ADDRESS='vQRMvkbfvkpEWrKcjJiWH1GvQGXm3a2Thy'
+WALLET_PASSPHRASE='pass'
 ```

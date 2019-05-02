@@ -7,10 +7,10 @@ const Encoder = require('./formatters/encoder');
 const Decoder = require('./formatters/decoder');
 const Utils = require('./utils');
 
-class Qweb3 {
+class Vweb3 {
   /**
-   * Qweb3 constructor.
-   * @param {string|Qweb3Provider} provider Either URL string to create HttpProvider or a Qweb3 compatible provider.
+   * Vweb3 constructor.
+   * @param {string|Vweb3Provider} provider Either URL string to create HttpProvider or a Vweb3 compatible provider.
    */
   constructor(provider) {
     this.provider = initProvider(provider);
@@ -31,7 +31,7 @@ class Qweb3 {
 
   /**
    * Constructs a new HttpProvider instance.
-   * @param {string} urlString URL of the blockchain API. eg. http://bodhi:bodhi@127.0.0.1:13889
+   * @param {string} urlString URL of the blockchain API. eg. http://user:pass@127.0.0.1:32916
    * @return {HttpProvider} HttpProvider instance.
    */
   HttpProvider(urlString) {
@@ -53,6 +53,23 @@ class Qweb3 {
   }
 
   /** ******** BLOCKCHAIN ********* */
+  /**
+   * Returns the smart contract infomation.
+   * @param contractAddress {String} The smart contract address.
+   * @return {Promise} Smart contract infomation or Error.
+   */
+  getAccountInfo(contractAddress) {
+    return this.provider.rawCall('getaccountinfo', [contractAddress]);
+  }
+
+  /**
+   * Returns the hash of the best (tip) block in the longest blockchain.
+   * @return {Promise} The hash of the best (tip) block.
+   */
+  getBestBlockHash() {
+    return this.provider.rawCall('getbestblockhash');
+  }
+
   /**
    * Returns the block info for a given block hash.
    * @param {string} blockHash The block hash to look up.
@@ -89,6 +106,85 @@ class Qweb3 {
   }
 
   /**
+  * Returns the block header.
+  * @param hash {String} The block hash.
+  * @param verbose {Boolean} True for a json object or false for the hex encoded data.
+  * @return {Promise} The block header or Error.
+  */
+  getBlockHeader(hash, verbose = true) {
+    return this.provider.rawCall('getblockheader', [hash, verbose]);
+  }
+
+  /**
+  * Returns information about all known tips in the block tree.
+  * @return {Promise} Information about all known tips in the block tree or Error.
+  */
+  getChainTips() {
+    return this.provider.rawCall('getchaintips');
+  }
+
+  /**
+  * Returns information of synchronized checkpoint.
+  * @return {Promise} Information of synchronized checkpointe or Error.
+  */
+  getCheckPoint() {
+    return this.provider.request('getcheckpoint');
+  }
+
+  /**
+  * Returns the proof-of-work difficulty and the proof-of-stake difficulty.
+  * @return {Promise} Value of difficulty or Error.
+  */
+  getDifficulty() {
+    return this.provider.rawCall('getdifficulty');
+  }
+
+  /**
+  * Returns all in mempool ancestors.
+  * @param hash {String} The transaction id.
+  * @param verbose {Boolean} True for a json object or false for the hex encoded data.
+  * @return {Promise} All in mempool ancestors or Error.
+  */
+  getMempoolAncestors(txid, verbose = true) {
+    return this.provider.rawCall('getmempoolancestors', [txid, verbose]);
+  }
+
+  /**
+  * Returns all in mempool descendants.
+  * @param hash {String} The transaction id.
+  * @param verbose {Boolean} True for a json object or false for the hex encoded data.
+  * @return {Promise} All in mempool descendants or Error.
+  */
+  getMempoolDescendants(txid, verbose = true) {
+    return this.provider.rawCall('getmempooldescendants', [txid, verbose]);
+  }
+
+  /**
+  * Returns mempool data for given transaction.
+  * @param hash {String} The transaction id.
+  * @return {Promise} Mempool data for given transaction.
+  */
+  getMempoolEntry(txid) {
+    return this.provider.rawCall('getmempoolentry', [txid]);
+  }
+
+  /**
+  * Returns infomation of mempool.
+  * @param hash {String} The transaction id.
+  * @return {Promise} Infomation of mempool.
+  */
+  getMempoolInfo() {
+    return this.provider.rawCall('getmempoolinfo');
+  }
+
+  /**
+  * @param contractAddress {String} The smart contract address.
+  */
+  getStorage(contractAddress) {
+    return this.provider.rawCall('getstorage', [contractAddress]);
+  }
+
+  /**
    * Returns the transaction receipt given the txid.
    * @param {string} txid The transaction id to look up.
    * @return {Promise} Transaction receipt or Error.
@@ -105,6 +201,32 @@ class Qweb3 {
    */
   listContracts(startingAcctIndex = 1, maxDisplay = 20) {
     return this.provider.rawCall('listcontracts', [startingAcctIndex, maxDisplay]);
+  }
+
+  /**
+  * Returns make a public and private key pair.
+  * @return {Promise} Public and private key pair or Error.
+  */
+  makeKeyPair() {
+    return this.provider.rawCall('makekeypair');
+  }
+
+  /**
+  * Treats a block as if it were received before others with the same work.
+  * @param blockHash {String} The block hash.
+  * @return {Promise} null or Error.
+  */
+  preciousBlock(blockHash) {
+    return this.provider.rawCall('preciousblock', [blockHash]);
+  }
+
+  /**
+  * Prune Block Chain.
+  * @param heignt {number} The block height.
+  * @return {Promise} null or Error.
+  */
+  pruneBlockchain(heignt) {
+    return this.provider.rawCall('pruneblockchain', [heignt]);
   }
 
   /**
@@ -147,6 +269,33 @@ class Qweb3 {
       .then(results => Decoder.decodeSearchLog(results, contractMetadata, removeHexPrefix));
   }
 
+  /**
+  * Send a synchronized checkpoint.
+  * @param blockHash {String} The block hash.
+  * @return {Promise} null or Error.
+  */
+  sendCheckpoint(blockHash) {
+    return this.provider.rawCall('sendcheckpoint', [blockHash]);
+  }
+
+  /**
+  * Retuen result of verify.
+  * @param checkLevel {Number} Check level.
+  * @param nblocks {Number} The number of block.
+  * @return {Promise} True/False or Error.
+  */
+  verifyChain(checkLevel = 3, nblocks = 6) {
+    return this.provider.rawCall('verifychain', [checkLevel, nblocks]);
+  }
+
+  /**
+  * @param txoutProof {String} Txout proof.
+  * @return {Promise} True/false or Error.
+  */
+  verifyTxoutProof(txoutProof) {
+    return this.provider.rawCall('verifytxoutproof', [txoutProof]);
+  }
+
   /** ******** GENERATING ********* */
   /**
    * Mine up to n blocks immediately (before the RPC call returns) to an address in the wallet.
@@ -165,7 +314,7 @@ class Qweb3 {
   /**
    * Mine blocks immediately to a specified address (before the RPC call returns).
    * @param {number} blocks How many blocks are generated immediately.
-   * @param {string} address The address to send the newly generated qtum to.
+   * @param {string} address The address to send the newly generated VIPSTARCOIN to.
    * @param {number} maxTries How many iterations to try (default = 1000000).
    * @return {array} Hashes of blocks generated.
    */
@@ -191,8 +340,8 @@ class Qweb3 {
 
   /** ******** RAW TRANSACTIONS ********* */
   /**
-   * Get the hex address of a Qtum address.
-   * @param {string} address Qtum address
+   * Get the hex address of a VIPSTARCOIN address.
+   * @param {string} address VIPSTARCOIN address
    * @return {Promise} Hex string of the converted address or Error
    */
   getHexAddress(address) {
@@ -200,9 +349,9 @@ class Qweb3 {
   }
 
   /**
-   * Converts a hex address to qtum address.
-   * @param {string} hexAddress Qtum address in hex format.
-   * @return {Promise} Qtum address or Error.
+   * Converts a hex address to VIPSTARCOIN address.
+   * @param {string} hexAddress VIPSTARCOIN address in hex format.
+   * @return {Promise} VIPSTARCOIN address or Error.
    */
   fromHexAddress(hexAddress) {
     return this.provider.rawCall('fromhexaddress', [hexAddress]);
@@ -210,8 +359,8 @@ class Qweb3 {
 
   /** ******** UTIL ********* */
   /**
-   * Validates if a valid Qtum address.
-   * @param {string} address Qtum address to validate.
+   * Validates if a valid VIPSTARCOIN address.
+   * @param {string} address VIPSTARCOIN address to validate.
    * @return {Promise} Object with validation info or Error.
    */
   validateAddress(address) {
@@ -230,7 +379,7 @@ class Qweb3 {
 
   /**
    * Reveals the private key corresponding to the address.
-   * @param {string} address The qtum address for the private key.
+   * @param {string} address The VIPSTARCOIN address for the private key.
    * @return {Promise} Private key or Error.
    */
   dumpPrivateKey(address) {
@@ -238,7 +387,7 @@ class Qweb3 {
   }
 
   /**
-   * Encrypts the wallet for the first time. This will shut down the qtum server.
+   * Encrypts the wallet for the first time. This will shut down the VIPSTARCOIN server.
    * @param {string} passphrase The passphrase to encrypt the wallet with. Must be at least 1 character.
    * @return {Promise} Success or Error.
    */
@@ -247,8 +396,8 @@ class Qweb3 {
   }
 
   /**
-   * Gets the account name associated with the Qtum address.
-   * @param {string} address The qtum address for account lookup.
+   * Gets the account name associated with the VIPSTARCOIN address.
+   * @param {string} address The VIPSTARCOIN address for account lookup.
    * @return {Promise} Account name or Error.
    */
   getAccount(address) {
@@ -256,27 +405,27 @@ class Qweb3 {
   }
 
   /**
-   * Gets the Qtum address based on the account name.
+   * Gets the VIPSTARCOIN address based on the account name.
    * @param {string} acctName The account name for the address ("" for default).
-   * @return {Promise} Qtum address or Error.
+   * @return {Promise} VIPSTARCOIN address or Error.
    */
   getAccountAddress(acctName = '') {
     return this.provider.rawCall('getaccountaddress', [acctName]);
   }
 
   /**
-   * Gets the Qtum address with the account name.
+   * Gets the VIPSTARCOIN address with the account name.
    * @param {string} acctName The account name ("" for default).
-   * @return {Promise} Qtum address array or Error.
+   * @return {Promise} VIPSTARCOIN address array or Error.
    */
   getAddressesByAccount(acctName = '') {
     return this.provider.rawCall('getaddressesbyaccount', [acctName]);
   }
 
   /**
-   * Gets a new Qtum address for receiving payments.
+   * Gets a new VIPSTARCOIN address for receiving payments.
    * @param {string} acctName The account name for the address to be linked to ("" for default).
-   * @return {Promise} Qtum address or Error.
+   * @return {Promise} VIPSTARCOIN address or Error.
    */
   getNewAddress(acctName = '') {
     return this.provider.rawCall('getnewaddress', [acctName]);
@@ -352,7 +501,7 @@ class Qweb3 {
   /**
    * Lists groups of addresses which have had their common ownership made public by common use as inputs
    *  or as the resulting change in past transactions.
-   * @return {Promise} Array of addresses with QTUM balances or Error.
+   * @return {Promise} Array of addresses with VIPS balances or Error.
    */
   listAddressGroupings() {
     return this.provider.rawCall('listaddressgroupings');
@@ -376,15 +525,15 @@ class Qweb3 {
 
   /**
    * Lists unspent transaction outputs.
-   * @param {string} address Address to send QTUM to.
-   * @param {number} amount Amount of QTUM to send.
+   * @param {string} address Address to send VIPS to.
+   * @param {number} amount Amount of VIPS to send.
    * @param {string} comment Comment used to store what the transaction is for.
    * @param {string} commentTo Comment to store name/organization to which you're sending the transaction.
    * @param {boolean} subtractFeeFromAmount The fee will be deducted from the amount being sent.
    * @param {boolean} replaceable Allow this transaction to be replaced by a transaction with higher fees via BIP 125.
    * @param {number} confTarget Confirmation target (in blocks).
    * @param {string} estimateMode The fee estimate mode, must be one of: "UNSET", "ECONOMICAL", "CONSERVATIVE"
-   * @param {string} senderAddress The QTUM address that will be used to send money from.
+   * @param {string} senderAddress The VIPS address that will be used to send money from.
    * @param {boolean} changeToSender Return the change to the sender.
    * @return {Promise} Transaction ID or Error
    */
@@ -416,7 +565,7 @@ class Qweb3 {
 
   /**
    * Set the transaction fee per kB. Overwrites the paytxfee parameter.
-   * @param {bumber} amount The transaction fee in QTUM/kB.
+   * @param {bumber} amount The transaction fee in VIPS/kB.
    * @return {Promise} True/false for success or Error.
    */
   setTxFee(amount) {
@@ -453,4 +602,4 @@ class Qweb3 {
   }
 }
 
-module.exports = Qweb3;
+module.exports = Vweb3;

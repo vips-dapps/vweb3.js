@@ -7,25 +7,25 @@ const Decoder = require('../decoder');
 const { assert, expect } = chai;
 
 describe('Decoder', () => {
-  describe('toQtumAddress()', () => {
-    it('returns the converted qtum address', () => {
+  describe('toVIPSTARCOINAddress()', () => {
+    it('returns the converted VIPSTARCOIN address', () => {
       assert.equal(
-        Decoder.toQtumAddress('17e7888aa7412a735f336d2f6d784caefabb6fa3', false),
-        'qKjn4fStBaAtwGiwueJf9qFxgpbAvf1xAy',
+        Decoder.toQtumAddress('e8ad19efc526cb83065c67616b8ba6766e713f40', false),
+        'vUpu78SxadYJhxk1xjHCkDiPTzfrgGS2qq',
       );
       assert.equal(
-        Decoder.toQtumAddress('2a2ad24849bc061f0f7abee243ebdb584b0d11f1', true),
-        'QQSwne4oB1jmRXceHrs9tPGQmn7qjvSqyR',
+        Decoder.toVIPSTARCOINAddress('303babce37b4bcccb8998c7c1a6d52ed396b001b', true),
+        'VF4FqqBgWBn2vPs7mdi4RQD6fhG6YkTQtt',
       );
     });
 
     it('throws if hexAddress is undefined or empty', () => {
-      expect(() => Decoder.toQtumAddress()).to.throw();
-      expect(() => Decoder.toQtumAddress('')).to.throw();
+      expect(() => Decoder.toVIPSTARCOINAddress()).to.throw();
+      expect(() => Decoder.toVIPSTARCOINAddress('')).to.throw();
     });
 
     it('throws if hexAddress is not hex', () => {
-      expect(() => Decoder.toQtumAddress('qKjn4fStBaAtwGiwueJf9qFxgpbAvf1xAy')).to.throw();
+      expect(() => Decoder.toVIPSTARCOINAddress('vUpu78SxadYJhxk1xjHCkDiPTzfrgGS2qq')).to.throw();
     });
   });
 

@@ -3,10 +3,10 @@ const chai = require('chai');
 
 const { assert } = chai;
 
-module.exports = class QAssert {
-  static isQtumAddress(address) {
+module.exports = class VAssert {
+  static isVIPSTARCOINAddress(address) {
     assert.isDefined(address);
     assert.equal(_.size(address), 34);
-    assert.isTrue(address.startsWith('q') || address.startsWith('Q'));
+    assert.isTrue(address.startsWith('v') || address.startsWith('V'));
   }
 };
