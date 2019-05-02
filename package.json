@@ -1,6 +1,6 @@
 {
   "name": "vweb3",
-  "namespace": "bodhi",
+  "namespace": "vipstar-dev",
   "version": "1.2.2",
   "description": "VIPSTARCOIN JavaScript API comunicating to vipstarcoin node over RPC",
   "main": "./src/index.js",
