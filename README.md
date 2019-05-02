@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vipstar-dev/vweb3.js.svg?branch=master)](https://travis-ci.org/vipstar-dev/vweb3.js)
+[![Build Status](https://travis-ci.org/vips-dapps/vweb3.js.svg?branch=master)](https://travis-ci.org/vips-dapps/vweb3.js)
 
 # Vweb3.js - Web3.js for VIPSTARCOIN
 
